@@ -1,38 +1,48 @@
-# Parent
-class Person:
+from math import pi
+
+
+class Shape: # Parent Class
     def __init__(self, name):
         self.name = name
-   
-    # To get name
-    def getName(self):
+
+    def area(self):
+        pass # the pass statement will define the function but not do anything. It's here so the child class can use(inherit) it
+
+    def fact(self):
+        return "I am a two-dimensional shape."
+
+    def __str__(self): #  string representation of an object. The object is 'name'.
         return self.name
-   
-    # To check if this person is an employee
-    def isEmployee(self):
-        return False
 
-        # To check if this person is exempt
-    def isExempt(self):
-        return False
-   
+# ------------------------------------------------------------------------------------------------
 
-# Inherited
-class Employee(Person):
-    # return True to override the parent class
-    def isEmployee(self):
-        return True
+class Square(Shape): # Child of 'Shape' Parent
+    def __init__(self, length):
+        super().__init__("Square") # I initially used self but was getting a recursion error message.
+        # I used w3 schools to learn about the super() method.
+        self.length = length
 
-class Exempt(Person):
-    # return True to override the parent class
-    def isExempt(self):
-        return True
+    def area(self):
+        return self.length**2
+
+    def fact(self):
+        return "Squares have each angle equal to 90 degrees."
+
+    
+# ------------------------------------------------------------------------------------------------
+
+class Circle(Shape): # Child of 'Shape' Parent
+    def __init__(self, radius):
+        super().__init__("Circle")
+        self.radius = radius
+
+    def area(self): # I just happen to know about Pi in Math so I imported it. 
+        return pi*self.radius**2
 
 
-emp = Person("Cog")  # An Object of Person
-print(emp.getName(), emp.isEmployee()) # methods in Parent class
-   
-emp = Employee("Worker Bee") # An Object of Employee
-print(emp.getName(), emp.isEmployee())# same methods as parent class but overwritten
-
-emp = Employee("Bossman") # An Object of a person who is Exempt
-print(emp.getName(), emp.isExempt())
+a = Square(4)
+b = Circle(7)
+print(b)
+print(b.fact())
+print(a.fact())
+print(b.area())
