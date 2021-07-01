@@ -16,6 +16,7 @@ class Account(models.Model):
 
 TransactionTypes = [('Deposit', 'Deposit'), ('Withdrawal', 'Withdrawal')]
 
+
 class Transaction(models.Model):
     date = models.DateField()
     type = models.CharField(max_length=10, choices=TransactionTypes)
@@ -23,4 +24,4 @@ class Transaction(models.Model):
     description = models.CharField(max_length=100)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
-    Transactions = models.manager
+    Transactions = models.Manager()
